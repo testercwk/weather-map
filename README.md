@@ -15,6 +15,6 @@ Call Weather Map Service
 <br/>
 <br/>
 
-****To do
+To do
 - build more securely, not implement with any security in mind. 
 - read api better.
