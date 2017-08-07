@@ -41,6 +41,7 @@ public class WeatherController {
         ObjectMapper mapper = new ObjectMapper();
         try {
             city = StringUtils.substringAfter(city, "=");
+            city = city.replace("+", "");
             LOGGER.error("City: " + city);
             String url = "http://api.openweathermap.org/data/2.5/weather?appid=2eed2146552e839cd04731a71ead6cbf&q=" + city;
             String result = service.callOpenWeather(url);
