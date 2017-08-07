@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -51,7 +53,11 @@ public class WeatherController {
                 model.addAttribute("now", format.format(now));
                 model.addAttribute("city", city);
                 model.addAttribute("weather", ((List<Map>) map.get("weather")).get(0).get("description"));
-                model.addAttribute("temperature", ((Map) map.get("main")).get("temp"));
+                NumberFormat numberFormat = new DecimalFormat("#0.00");
+                Double celsius = ((Double) ((Map) map.get("main")).get("temp")) - 273.15;
+                Double fahrenheit = ((Double) ((Map) map.get("main")).get("temp")) - 459.67;
+                model.addAttribute("temperature", numberFormat.format(celsius));
+                model.addAttribute("temperature2", numberFormat.format(fahrenheit));
 
                 SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
                 long sunriseLong = Long.valueOf((Integer) ((Map) map.get("sys")).get("sunrise")) * 1000;

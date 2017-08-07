@@ -28,7 +28,8 @@
             </tr>
             <tr>
                 <td>Temperature</td>
-                <td><c:out value="${temperature}"/></td>
+                <td><c:out value="${temperature}"/>&#8451;</td>
+                <td><c:out value="${temperature2}"/>&#8457;</td>
             </tr>
             <tr>
                 <td>Sunrise</td>
