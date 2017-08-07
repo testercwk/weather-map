@@ -1,5 +1,10 @@
 # weather-map
 
+Prerequisite
+- Tomcat 8
+- Maven 3
+- JDK 1.8
+
 Build project
 1. maven clean install
 2. copy weather-map.war into tomcat webapps folder.
