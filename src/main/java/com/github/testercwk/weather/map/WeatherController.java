@@ -41,16 +41,12 @@ public class WeatherController {
         ObjectMapper mapper = new ObjectMapper();
         try {
             city = StringUtils.substringAfter(city, "=");
-            city = city.replace("+", "");
-            LOGGER.error("City: " + city);
             String url = "http://api.openweathermap.org/data/2.5/weather?appid=2eed2146552e839cd04731a71ead6cbf&q=" + city;
             String result = service.callOpenWeather(url);
-            LOGGER.error("result {}", result);
 
             Map map = mapper.readValue(result, Map.class);
-            LOGGER.error("map" + map);
-            LOGGER.error("map.getname " + map.get("name"));
 
+            city = city.replace("+", " ");
             if (map.get("name") != null && StringUtils.equalsIgnoreCase(city, map.get("name").toString())) {
                 model.addAttribute("now", format.format(now));
                 model.addAttribute("city", city);
@@ -64,7 +60,6 @@ public class WeatherController {
 
                 long sunsetLong = Long.valueOf((Integer) ((Map) map.get("sys")).get("sunset")) * 1000;
                 Date sunsetDate = new Date(sunsetLong);
-                LOGGER.error("map" + model);
                 model.addAttribute("sunset", timeFormat.format(sunsetDate));
             } else {
                 model.addAttribute("errorMessage", "city not found");
